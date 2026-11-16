@@ -14,7 +14,7 @@
 </head>
 <body>
 <main>
-  <h1>Secretary Agent <span class="sub">(Ate Sonnet)</span></h1>
+  <h1>Secretary Agent <span class="sub">(Ate Julia)</span></h1>
   <div class="box" id="box">
     <p class="big" id="title">Connecting…</p>
     <p id="text">Please wait a moment.</p>
@@ -23,7 +23,7 @@
 </main>
 <script>
 // Google sent the person here after they allowed (or declined) Calendar access. Hand the one-time code to the
-// connect helper, which Sonnet's PC picks up; then clear it from the address bar. Nothing is stored on this page.
+// connect helper, which Julia's PC picks up; then clear it from the address bar. Nothing is stored on this page.
 const HELPER = "https://sonnet-connect.agentsonnet.workers.dev";
 const q = new URLSearchParams(location.search);
 const state = q.get("state") || "", code = q.get("code") || "", error = q.get("error") || "";
@@ -33,7 +33,7 @@ function show(title, text) {
   document.getElementById("text").textContent = text;
 }
 if (!/^[0-9a-f]{32}$/.test(state) || (!code && !error)) {
-  show("Nothing to connect here", "Open this from the Connect Google Calendar button in your chat with Ate Sonnet on Telegram.");
+  show("Nothing to connect here", "Open this from the Connect Google Calendar button in your chat with Ate Julia on Telegram.");
 } else {
   fetch(HELPER + "/deposit", {
     method: "POST",
@@ -42,7 +42,7 @@ if (!/^[0-9a-f]{32}$/.test(state) || (!code && !error)) {
   }).then(r => {
     if (!r.ok) throw new Error(String(r.status));
     if (error) show("Not connected", "You didn't allow Calendar access, so nothing was connected. You can close this page and go back to Telegram.");
-    else show("✅ Almost done", "Go back to Telegram: Ate Sonnet will confirm in a few seconds. If she hasn't after a minute, the link had expired; send /gcal connect for a new one.");
+    else show("✅ Almost done", "Go back to Telegram: Ate Julia will confirm in a few seconds. If she hasn't after a minute, the link had expired; send /gcal connect for a new one.");
   }).catch(() => {
     show("Something went wrong", "Please go back to Telegram and send /gcal connect to try again.");
   });
